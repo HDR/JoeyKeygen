@@ -20,7 +20,7 @@ Run build.bat
 
 ## Usage
 
-Open JoeyKeygen.exe
+Open JoeyKeygen.exe or run JoeyKeygen.py
 
 ## Credits
 
