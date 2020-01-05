@@ -1,7 +1,5 @@
 import usb.core
-import usb.util
 import numpy
-import sys
 
 def xorShifted(left, right, shift):
     if(shift >= 0):
@@ -9,18 +7,16 @@ def xorShifted(left, right, shift):
     return (numpy.uint32(left) ^ numpy.uint32(right)) << numpy.uint32(-shift)
 
 def genKey():
-    key = (xorShifted(did[0], 0x4210005, 5) | xorShifted(did[0], 0x4210005, -0x1b))
-    key = key ^ (xorShifted(did[1], 0x30041523, 3) | xorShifted(did[1], 0x30041523, -0x1d))
-    key = key ^ (xorShifted(did[2], 0x6517bebe, 0xc) | xorShifted(did[2], 0x6517bebe, -0x14))
+    key = (xorShifted(did[0], 0x4210005, 5) | xorShifted(did[0], 0x4210005, -0x1b)) ^ (xorShifted(did[1], 0x30041523, 3) | xorShifted(did[1], 0x30041523, -0x1d)) ^ (xorShifted(did[2], 0x6517bebe, 0xc) | xorShifted(did[2], 0x6517bebe, -0x14))
     for i in range (0, 100):
         key = key >> numpy.uint32(1) | (key ^ key >> numpy.uint32(0x1f) ^ (key & numpy.uint32(0x200000)) >> numpy.uint32(0x15) ^ (key & numpy.uint32(2)) >> numpy.uint32(1) ^ key & numpy.uint32(1)) << numpy.uint32(0x1f)
     
     return(key)
 
-
 dev = usb.core.find(idVendor=0x046d, idProduct=0x1234)
 if dev is None:
     print("No Joey Detected")
+    input("Press enter to continue")
 if dev is not None:
     print("Joey Connected\n")
     dev.set_configuration()
