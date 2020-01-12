@@ -38,7 +38,7 @@ var serial = {};
     return this.device_.open()
         .then(() => {
           if (this.device_.configuration === null) {
-            return this.device_.selectConfiguration(1);
+            return this.device_.selectConfiguration(-1);
           }
         })
         .then(() => {
@@ -59,7 +59,6 @@ var serial = {};
             })
           })
         })
-        .then(() => this.device.selectConfiguration(1))
         .then(() => this.device_.claimInterface(this.interfaceNumber_))
         .then(() => this.device_.selectAlternateInterface(this.interfaceNumber_, 0))
         .then(() => this.device_.controlTransferOut({
