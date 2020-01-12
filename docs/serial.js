@@ -59,6 +59,7 @@ var serial = {};
             })
           })
         })
+        .then(() => this.device.selectConfiguration(1))
         .then(() => this.device_.claimInterface(this.interfaceNumber_))
         .then(() => this.device_.selectAlternateInterface(this.interfaceNumber_, 0))
         .then(() => this.device_.controlTransferOut({
