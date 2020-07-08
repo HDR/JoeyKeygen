@@ -1,5 +1,7 @@
 # JoeyKeygen
 
+**Please only use this if you bought a Joey Gen3 from BennVenn and you haven't been able to get in touch with him**
+
 JoeyKeygen is a script that generates a key for your Joey joebags gen3
 
 See the Releases tab for compiled binaries (May not work for some users)
